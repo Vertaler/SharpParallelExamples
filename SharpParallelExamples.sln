@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixMultiplicationsExamples", "SharpParallelExamples\MatrixMultiplicationsExamples.csproj", "{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSimdExample", "SimpleSimdExample\SimpleSimdExample.csproj", "{28CC634A-5430-46DB-A30A-BB3068691158}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Debug|x64.ActiveCfg = Debug|x64
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Debug|x64.Build.0 = Debug|x64
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Release|x64.ActiveCfg = Release|x64
+		{0564B1F4-C3B9-45F5-ABA0-81022EE44AFF}.Release|x64.Build.0 = Release|x64
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Debug|x64.Build.0 = Debug|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|x64.ActiveCfg = Release|Any CPU
+		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
