@@ -80,6 +80,36 @@ namespace MatrixMultiplicationsExamples
             }
         }
 
+        public static void ThreadPoolMultiply(float[,] A, float[,] B, float[,] res)
+        {
+            using (var finished = new CountdownEvent(1))
+            {
+                for (int i = 0; i < res.GetLength(0); i++)
+                {
+                    for (int j = 0; j < res.GetLength(1); j++)
+                    {
+                        var tmpI = i;
+                        var tmpJ = j;
+                        finished.AddCount();
+                        ThreadPool.QueueUserWorkItem((state) =>
+                            {
+                                try
+                                { 
+                                    MultiplyStep(A, B, res, tmpI, tmpJ);
+                                }
+                                finally
+                                {
+                                    finished.Signal();
+                                }
+                            }
+                        );
+                    }
+                }
+                finished.Signal();
+                finished.Wait();
+            }
+        }
+
         public static void VectorizedMultiply(float[,] A, float[,] B, float[,] res)
         {
             for (int i = 0; i < res.GetLength(0); i++)
