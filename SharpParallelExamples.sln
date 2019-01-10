@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixMultiplicationsExampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSimdExample", "SimpleSimdExample\SimpleSimdExample.csproj", "{28CC634A-5430-46DB-A30A-BB3068691158}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLinqExamples", "PLinqExamples\PLinqExamples.csproj", "{5396DDD1-A247-4177-B023-A7870CBF7782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|Any CPU.Build.0 = Release|Any CPU
 		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|x64.ActiveCfg = Release|Any CPU
 		{28CC634A-5430-46DB-A30A-BB3068691158}.Release|x64.Build.0 = Release|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Debug|x64.Build.0 = Debug|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Release|x64.ActiveCfg = Release|Any CPU
+		{5396DDD1-A247-4177-B023-A7870CBF7782}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

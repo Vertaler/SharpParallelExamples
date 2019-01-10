@@ -16,8 +16,6 @@ namespace MatrixMultiplicationsExamples
         // m - first matrix columns and second matrix rows
         // k - second matrix columns
         {
-
-
             var sw = new Stopwatch();
             foreach (var item in methods)
             {
