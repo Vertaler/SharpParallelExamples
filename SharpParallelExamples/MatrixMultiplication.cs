@@ -124,6 +124,25 @@ namespace MatrixMultiplicationsExamples
             Task.WaitAll(tasks);
         }
 
+        public static void ParallelInvokeMultiply(float[,] A, float[,] B, float[,] res)
+        {
+            int rows = res.GetLength(0);
+            int columns = res.GetLength(1);
+            var actions = new Action[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                var tmpI = i;
+                actions[i] = () =>
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        MultiplyStep(A, B, res, tmpI, j);
+                    }
+                };
+            }
+            Parallel.Invoke(actions);
+        }
+
         public static void VectorizedMultiply(float[,] A, float[,] B, float[,] res)
         {
             for (int i = 0; i < res.GetLength(0); i++)
@@ -133,6 +152,20 @@ namespace MatrixMultiplicationsExamples
                     MultiplyStepSIMD(A, B, res, i, j);
                 }
             }
+        }
+
+        public static void ParallelForMultiply(float[,] A, float[,] B, float[,] res)
+        {
+            int rows = res.GetLength(0);
+            int columns = res.GetLength(1);
+            Parallel.For(0, rows, (i) =>
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        MultiplyStep(A, B, res, i, j);
+                    }
+                }
+            );          
         }
     }
 }

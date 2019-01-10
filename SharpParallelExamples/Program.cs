@@ -17,13 +17,14 @@ namespace MatrixMultiplicationsExamples
         // k - second matrix columns
         {
             var sw = new Stopwatch();
+            var random = new Random(42);
+
             foreach (var item in methods)
             {
                 sw.Reset();
                 for (int count = 0; count< iters; count++)
                 {
                     #region initialize matrices
-                    var random = new Random();
 
                     float[,] A = new float[n, m];
                     float[,] B = new float[m, k];
@@ -51,9 +52,9 @@ namespace MatrixMultiplicationsExamples
         static void Main(string[] args)
         {
 
-            int n = 400;
-            int m = 400;
-            int k = 400;
+            int n = 500;
+            int m = 500;
+            int k = 500;
             int iters = 10;
 
             Console.WriteLine($"Vector<T> hardware accelerated: {Vector.IsHardwareAccelerated}");
@@ -65,6 +66,9 @@ namespace MatrixMultiplicationsExamples
             methods["Thread manually"] = MatrixMultiplication.ThreadMultiply;
             methods["ThreadPool"] = MatrixMultiplication.ThreadPoolMultiply;
             methods["Tasks"] = MatrixMultiplication.TaskMultiply;
+            methods["ParallelInvoke"] = MatrixMultiplication.ParallelInvokeMultiply;
+            methods["ParallelFor"] = MatrixMultiplication.ParallelForMultiply;
+
 
             BenchmarkMatrixMultiply(n, m, k, iters, methods);
             Console.ReadKey();
