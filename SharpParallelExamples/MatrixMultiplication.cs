@@ -82,32 +82,46 @@ namespace MatrixMultiplicationsExamples
 
         public static void ThreadPoolMultiply(float[,] A, float[,] B, float[,] res)
         {
-            using (var finished = new CountdownEvent(1))
-            {
-                for (int i = 0; i < res.GetLength(0); i++)
-                {
-                    for (int j = 0; j < res.GetLength(1); j++)
-                    {
-                        var tmpI = i;
-                        var tmpJ = j;
-                        finished.AddCount();
-                        ThreadPool.QueueUserWorkItem((state) =>
-                            {
-                                try
-                                { 
-                                    MultiplyStep(A, B, res, tmpI, tmpJ);
-                                }
-                                finally
-                                {
-                                    finished.Signal();
+            using (var finished = new CountdownEvent(1)){
+                for (int i = 0; i < res.GetLength(0); i++){
+                    
+                    var tmpI = i;
+                    finished.AddCount();
+                    ThreadPool.QueueUserWorkItem((state) =>
+                        {
+                            try{
+                                for (int j = 0; j < res.GetLength(1); j++){
+                                    MultiplyStep(A, B, res, tmpI, j);
                                 }
                             }
-                        );
-                    }
+                            finally{
+                                finished.Signal();
+                            }
+                        }
+                    ); 
                 }
                 finished.Signal();
                 finished.Wait();
             }
+        }
+
+        public static void TaskMultiply(float[,] A, float[,] B, float[,] res)
+        {
+            int rows = res.GetLength(0);
+            int columns = res.GetLength(1);
+            var tasks = new Task[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                var tmpI = i;
+                tasks[i] = Task.Factory.StartNew(() =>
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        MultiplyStep(A, B, res, tmpI, j);
+                    }
+                });
+            }
+            Task.WaitAll(tasks);
         }
 
         public static void VectorizedMultiply(float[,] A, float[,] B, float[,] res)

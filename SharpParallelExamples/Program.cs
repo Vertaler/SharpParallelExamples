@@ -64,8 +64,7 @@ namespace MatrixMultiplicationsExamples
             methods["Vectorized"] = MatrixMultiplication.VectorizedMultiply;
             methods["Thread manually"] = MatrixMultiplication.ThreadMultiply;
             methods["ThreadPool"] = MatrixMultiplication.ThreadPoolMultiply;
-
-
+            methods["Tasks"] = MatrixMultiplication.TaskMultiply;
 
             BenchmarkMatrixMultiply(n, m, k, iters, methods);
             Console.ReadKey();
