@@ -9,7 +9,7 @@ namespace PLinqExamples
 {
     class Program
     {
-        static Random rand = new Random();
+        static Random rand = new Random(0);
         static int minValue = 0;
         static int maxValue = 20;
 
@@ -26,7 +26,6 @@ namespace PLinqExamples
         static void Benchmark(string message, int size, int iters, Action<int[]> linq, Action<int[]> plinq)
         {
             var sw = new Stopwatch();
-
 
             Console.WriteLine(message);
             Console.WriteLine($"Iterations: {iters}");
@@ -56,14 +55,8 @@ namespace PLinqExamples
 
         static void Main(string[] args)
         {
-            int size = 1000000 ;
+            int size = 1000;
             int iters = 100;
-            Random rand = new Random();
-            int[] testArray = Enumerable
-                .Repeat(0, size)
-                .Select(i => rand.Next(minValue, maxValue))
-                .ToArray();
-
 
             #region squares
             Benchmark(
@@ -74,17 +67,15 @@ namespace PLinqExamples
                 (arr) => arr.AsParallel().Select(x => x * x).ToArray()
             );
             #endregion
-
             #region minimum
             Benchmark(
-                "Compute minimum: ",
+                "Find minimum: ",
                 size,
                 iters,
                 (arr) => arr.Min(),
                 (arr) => arr.AsParallel().Min()
             );
             #endregion
-
             #region sort
             Benchmark(
                 "Sort array: ",
@@ -94,6 +85,16 @@ namespace PLinqExamples
                 (arr) => arr.AsParallel().OrderBy(x => x).ToArray()
             );
             #endregion
+            #region where
+            Benchmark(
+                "Where: ",
+                size,
+                iters,
+                (arr) => arr.Where(x => x % 2 == 0).ToArray(),
+                (arr) => arr.AsParallel().Where(x => x % 2 == 0).ToArray()
+            );
+            #endregion
+
             Console.ReadKey();
         }
     }
