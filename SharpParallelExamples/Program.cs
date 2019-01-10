@@ -51,10 +51,10 @@ namespace MatrixMultiplicationsExamples
         static void Main(string[] args)
         {
 
-            int n = 42;
-            int m = 43;
-            int k = 44;
-            int iters = 100;
+            int n = 400;
+            int m = 400;
+            int k = 400;
+            int iters = 10;
 
             Console.WriteLine($"Vector<T> hardware accelerated: {Vector.IsHardwareAccelerated}");
             Console.WriteLine($"Vector<float>.Count: {Vector<float>.Count}");
@@ -62,6 +62,8 @@ namespace MatrixMultiplicationsExamples
             var methods =new Dictionary<string, MatrixMultiply>();
             methods["Sequential"] = MatrixMultiplication.SequentialMultiply;
             methods["Vectorized"] = MatrixMultiplication.VectorizedMultiply;
+            methods["Thread manually"] = MatrixMultiplication.ThreadMultiply;
+
 
             BenchmarkMatrixMultiply(n, m, k, iters, methods);
             Console.ReadKey();

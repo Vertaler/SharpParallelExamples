@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Numerics;
 
@@ -16,6 +17,8 @@ namespace MatrixMultiplicationsExamples
             {
                 res[i, j] += A[i, k] * B[k, j];
             }
+            
+
         }
 
         public static void MultiplyStepSIMD(float[,] A, float[,] B, float[,] res, int i, int j)
@@ -46,6 +49,34 @@ namespace MatrixMultiplicationsExamples
                 {
                     MultiplyStep(A, B, res, i, j);
                 }
+            }
+        }
+
+        public static void ThreadMultiply(float[,] A, float[,] B, float[,] res)
+        {
+            int threadNum = 4;
+            Thread[] threads = new Thread[threadNum];
+            int rowsPerThread = res.GetLength(0) / threadNum;
+            for (int threadIndex = 0; threadIndex < threadNum; threadIndex++)
+            {
+                int tmp = threadIndex;
+                threads[threadIndex] = new Thread(() =>
+                    {
+                        for (int i = 0; i < rowsPerThread; i++)
+                        {
+                            for (int j = 0; j < res.GetLength(1); j++)
+                            {
+                                MultiplyStep(A, B, res, i + tmp * rowsPerThread, j);
+                            }
+                        }
+                    }
+                );
+                threads[threadIndex].Start();
+            }
+
+            for (int threadIndex = 0; threadIndex < threadNum; threadIndex++)
+            {
+                threads[threadIndex].Join();
             }
         }
 
